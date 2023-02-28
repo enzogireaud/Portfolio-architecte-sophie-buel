@@ -1,4 +1,10 @@
-const response = await fetch("http://localhost:5678/api/works");
+const response = await fetch("http://localhost:5678/api/works").catch(function (
+  error
+) {
+  console.log(
+    "Il y a eu un problème avec l'opération fetch : " + error.message
+  );
+});
 const works = await response.json();
 console.log(works);
 
@@ -25,37 +31,36 @@ function genererWorks(works) {
 }
 genererWorks(works);
 // Triage par catégorie
+
+// Catégorie hotel
+const filterByCategory = (categorie) => {
+  const work = works.filter(function (work) {
+    return work.category.name === categorie;
+  });
+  document.querySelector(".gallery").innerHTML = "";
+  genererWorks(work);
+  console.log("Le code se lance au reload");
+};
+
 //Toutes catégories
 const boutonTous = document.querySelector(".tous-btn");
-boutonTous.addEventListener("click", function () {
+boutonTous.addEventListener("click", () => {
   document.querySelector(".gallery").innerHTML = "";
   genererWorks(works);
 });
-// Catégorie objets
-const boutonObjet = document.querySelector(".objet-btn");
-boutonObjet.addEventListener("click", function () {
-  const workObjet = works.filter(function (work) {
-    return work.category.name === "Objets";
-  });
-  document.querySelector(".gallery").innerHTML = "";
-  genererWorks(workObjet);
-});
+
+//HOTEL
+const boutonHotel = document.querySelector(".hotel-btn");
+boutonHotel.addEventListener("click", () =>
+  filterByCategory("Hotels & restaurants")
+);
 
 // Catégorie appartements
 const boutonAppartement = document.querySelector(".appartement-btn");
-boutonAppartement.addEventListener("click", function () {
-  const workAppartement = works.filter(function (work) {
-    return work.category.name === "Appartements";
-  });
-  document.querySelector(".gallery").innerHTML = "";
-  genererWorks(workAppartement);
-});
-// Catégorie hotel
-const boutonHotel = document.querySelector(".hotel-btn");
-boutonHotel.addEventListener("click", function () {
-  const workHotel = works.filter(function (work) {
-    return work.category.name === "Hotels & restaurants";
-  });
-  document.querySelector(".gallery").innerHTML = "";
-  genererWorks(workHotel);
-});
+boutonAppartement.addEventListener("click", () =>
+  filterByCategory("Appartements")
+);
+
+// Catégorie objets
+const boutonObjet = document.querySelector(".objet-btn");
+boutonObjet.addEventListener("click", () => filterByCategory("Objets"));
