@@ -1,12 +1,9 @@
-const response = await fetch("http://localhost:5678/api/works").catch(function (
-  error
-) {
-  console.log(
-    "Il y a eu un problème avec l'opération fetch : " + error.message
-  );
+const response = await fetch("http://localhost:5678/api/works").then((res) => {
+  if (res.status >= 400) {
+    console.log("Error");
+  } else return res;
 });
 const works = await response.json();
-console.log(works);
 
 function genererWorks(works) {
   for (let i = 0; i < works.length; i++) {
@@ -39,7 +36,6 @@ const filterByCategory = (categorie) => {
   });
   document.querySelector(".gallery").innerHTML = "";
   genererWorks(work);
-  console.log("Le code se lance au reload");
 };
 
 //Toutes catégories

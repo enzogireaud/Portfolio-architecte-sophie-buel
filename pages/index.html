@@ -10,26 +10,38 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <meta name="description" content="" />
-    <link rel="stylesheet" href="./assets/style.css" />
-    <script type="module" src="./travaux.js"></script>
+    <link rel="stylesheet" href="../assets/style.css" />
+    <script type="module" src="../js/travaux.js"></script>
+    <script type="module" src="../js/edit.js"></script>
   </head>
   <body>
+    <div class="admin-header">
+      <p><i class="fa-solid fa-pen-to-square"></i> Mode edition</p>
+      <button id="publish-btn">Publier les changements</button>
+    </div>
     <header>
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
       <nav>
         <ul>
-          <li>projets</li>
-          <li>contact</li>
+          <li><a href="#portfolio">projets</a></li>
+          <li><a href="#contact">contact</a></li>
           <li><a href="login.html">Login</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          <li><img src="../assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
     </header>
     <main>
       <section id="introduction">
         <figure>
-          <img src="./assets/images/sophie-bluel.png" alt="" />
+          <img src="../assets/images/sophie-bluel.png" alt="" />
         </figure>
         <article>
           <h2>Designer d'espace</h2>
@@ -50,8 +62,10 @@
           </p>
         </article>
       </section>
+
       <section id="portfolio">
         <h2>Mes Projets</h2>
+
         <div class="filters">
           <button class="tous-btn">Tous</button>
           <button class="objet-btn">Objets</button>

@@ -90,6 +90,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  scroll-behavior: smooth;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -337,5 +338,67 @@ footer nav ul {
   margin-right: 40px;
 }
 .error {
-  border: 1px solid red;
+  border: 1px solid red !important;
+}
+#error-text {
+  padding: 10px;
+  color: red;
+}
+.edit-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 45px;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+  background: #000;
+  color: white;
+}
+.edit-header i {
+  padding: 0px 5px;
+}
+.edit-publish-btn {
+  border: none;
+  border-radius: 15px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+.portfolio-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.portfolio-intro p {
+  font-size: 0.9em;
+  margin-bottom: 2em;
+  padding: 0 20px;
+  cursor: pointer;
+  color: rgba(82, 82, 82, 0.99);
+}
+.portfolio-intro i {
+  padding: 0 5px;
+}
+/* admin header */
+.admin-header {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: #000;
+  min-height: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+#publish-btn {
+  border-radius: 15px;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
 }
