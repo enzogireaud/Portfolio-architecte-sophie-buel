@@ -1,4 +1,4 @@
-let token = window.localStorage.getItem("token");
+let tokenId;
 
 function login() {
   // On récupère les données des inputs
@@ -36,7 +36,6 @@ function login() {
     });
 }
 
-let tokenId;
 const submitBtn = document.getElementById("submit");
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();

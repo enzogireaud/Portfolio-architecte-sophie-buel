@@ -20,13 +20,17 @@
     <meta name="description" content="" />
     <link rel="stylesheet" href="../assets/style.css" />
     <script type="module" src="../js/travaux.js"></script>
-    <script type="module" src="../js/edit.js"></script>
+    <script type="module" src="../js/modal.js"></script>
+    <script type="module" src="../js/delete.js"></script>
+    <script type="module" src="../js/addPhoto.js"></script>
   </head>
   <body>
+    <!-- Header version admin -->
     <div class="admin-header">
       <p><i class="fa-solid fa-pen-to-square"></i> Mode edition</p>
       <button id="publish-btn">Publier les changements</button>
     </div>
+    <!-- Header classique -->
     <header>
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
       <nav>
@@ -38,6 +42,7 @@
         </ul>
       </nav>
     </header>
+    <!-- MAIN -->
     <main>
       <section id="introduction">
         <figure>
@@ -62,18 +67,98 @@
           </p>
         </article>
       </section>
-
+      <!-- Portfolio -->
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <div class="portfolio-intro">
+          <h2>Mes Projets</h2>
+          <a href="#modale1" id="edit-btn" class="js-modal">
+            <i class="fa-solid fa-pen-to-square"></i> Modifier
+          </a>
+        </div>
 
+        <!-- Filtres -->
         <div class="filters">
           <button class="tous-btn">Tous</button>
           <button class="objet-btn">Objets</button>
           <button class="appartement-btn">Appartement</button>
           <button class="hotel-btn">Hôtels & restaurants</button>
         </div>
+        <!-- Gallery qui importe toutes les photos -->
         <div class="gallery"></div>
       </section>
+      <!-- MODALE PHOTO -->
+      <aside
+        id="modale1"
+        class="modale"
+        aria-hidden="true"
+        aria-labelledby="titlemodale"
+        style="display: none"
+      >
+        <div class="modale-wrapper js-modal-stop">
+          <button class="js-modal-close">&times;</button>
+          <h1 id="titlemodale">Galerie Photo</h1>
+          <div class="modale-works"></div>
+          <a href="#modale2" id="ajout-btn" class="js-modal"
+            >Ajouter une photo</a
+          >
+          <button id="delete-btn">Supprimer la galerie</button>
+        </div>
+      </aside>
+      <aside
+        id="modale2"
+        class="modale"
+        aria-hidden="true"
+        aria-labelledby="titlemodale2"
+        style="display: none"
+      >
+        <div class="modale-wrapper js-modal-stop">
+          <a href="#modale1" id="left-arrow" class="js-modal"
+            ><i class="fa-solid fa-arrow-left"></i
+          ></a>
+          <button class="js-modal-close">&times;</button>
+          <h1 id="titlemodale2">Ajout photo</h1>
+          <form id="modale2-form">
+            <div class="ajout-photo">
+              <p id="img-label"><i class="fa-solid fa-image"></i></p>
+              <label for="add-photo-file" id="add-photo-label"
+                >+ Ajouter photo</label
+              >
+              <input
+                type="file"
+                accept="image/png, image/jpeg"
+                id="add-photo-file"
+                style="visibility: hidden"
+              />
+              <p id="max-photo">jpg,png : 4mo max</p>
+            </div>
+
+            <label for="add-photo-title" class="modale-2-input-label"
+              >Titre</label
+            >
+            <input
+              type="text"
+              name="titre"
+              id="add-photo-title"
+              class="modale-2-input"
+            />
+            <label for="add-photo-categorie" class="modale-2-input-label"
+              >Catégorie</label
+            >
+            <select
+              name="Catégorie"
+              id="add-photo-categorie"
+              class="modale-2-input"
+            >
+              <option>Choississez une catégorie</option>
+              <option value="1">Objets</option>
+              <option value="2">Appartements</option>
+              <option value="3">Hôtels & restaurants</option>
+            </select>
+            <span id="error-msg"></span>
+            <input type="submit" id="add-photo-btn" value="Valider" />
+          </form>
+        </div>
+      </aside>
       <section id="contact">
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>

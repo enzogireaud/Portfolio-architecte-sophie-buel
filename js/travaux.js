@@ -1,32 +1,31 @@
-const response = await fetch("http://localhost:5678/api/works").then((res) => {
-  if (res.status >= 400) {
-    console.log("Error");
-  } else return res;
-});
-const works = await response.json();
+import fetchWorksData from "./data.js";
 
-function genererWorks(works) {
+export const works = await fetchWorksData();
+
+export function genererGallery(works) {
   for (let i = 0; i < works.length; i++) {
     const work = works[i];
     // Récupération de l'élement du dom qui accueillera mes figures
-    const gallerie = document.querySelector(".gallery");
+    const gallery = document.querySelector(".gallery");
     // Création d'une balise dédiée à chaque travail
     const workElement = document.createElement("figure");
+    workElement.id = work.id;
     // Création des balises qui vont contenirs les élements de chaque travail
     const imgElement = document.createElement("img");
     imgElement.src = work.imageUrl;
     imgElement.alt = work.title;
+
     //*** */
     const captionElement = document.createElement("figcaption");
     captionElement.innerText = work.title;
     // On rattache la balise work a son parent gallerie
-    gallerie.appendChild(workElement);
+    gallery.appendChild(workElement);
     // On rattache les élements a leur balise parent WORK
     workElement.appendChild(imgElement);
     workElement.appendChild(captionElement);
   }
 }
-genererWorks(works);
+genererGallery(works);
 // Triage par catégorie
 
 // Catégorie hotel
@@ -35,14 +34,14 @@ const filterByCategory = (categorie) => {
     return work.category.name === categorie;
   });
   document.querySelector(".gallery").innerHTML = "";
-  genererWorks(work);
+  genererGallery(work);
 };
 
 //Toutes catégories
 const boutonTous = document.querySelector(".tous-btn");
 boutonTous.addEventListener("click", () => {
   document.querySelector(".gallery").innerHTML = "";
-  genererWorks(works);
+  genererGallery(works);
 });
 
 //HOTEL

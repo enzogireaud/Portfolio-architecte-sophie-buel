@@ -1,0 +1,14 @@
+{
+    "port": 3000,
+    "host": "localhost",
+    "root": "./public",
+    "open": true,
+    "ignore": "scss,less,gitignore,Backend",
+    "file": "index.html",
+    "wait": 1000,
+    "mount": [],
+    "logLevel": 2,
+    "middleware": [],
+    "liveCSS": false
+  }
+  
