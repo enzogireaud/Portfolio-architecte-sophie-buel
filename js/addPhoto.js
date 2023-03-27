@@ -20,33 +20,36 @@ imgInput.addEventListener("change", () => {
 submit.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const formData = new FormData();
-  formData.append("image", imgInput.files[0], "image");
-  formData.append("title", title.value);
-  formData.append("category", category.value);
+  if (!title.value || !category.value || !imgInput.value) {
+    title.style.border = "1px solid red";
+    category.style.border = "1px solid red";
+    errorMsg.innerText = "Veuillez compléter tout les champs correctement";
+    errorMsg.style.color = "red";
+    document.querySelector(".ajout-photo").style.border = "1px solid red";
+  } else {
+    const formData = new FormData();
+    formData.append("image", imgInput.files[0], "image");
+    formData.append("title", title.value);
+    formData.append("category", category.value);
 
-  fetch("http://localhost:5678/api/works", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    body: formData,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        title.style.border = "1px solid red";
-        category.style.border = "1px solid red";
-        errorMsg.innerText = "Veuillez compléter tout les champs correctement";
-        errorMsg.style.color = "red";
-        document.querySelector(".ajout-photo").style.border = "1px solid red";
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
     })
-    .then((data) => {
-      addNewWork(data.id);
-      closeModal(e);
-    });
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        addNewWork(data.id);
+        closeModal(e);
+      });
+  }
 });
 const addNewWork = (id) => {
   // Gallerie principale
